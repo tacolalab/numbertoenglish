@@ -1,0 +1,405 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author root
+ */
+public class englishtonumber extends javax.swing.JFrame {
+    
+    private static final String[] tensNames = {"", " ten", " twenty", " thirty", " forty", " fifty", " sixty", " seventy", " eighty", " ninety"};
+    private static final String[] numNames = {"", " one", " two", " three", " four", " five", " six", " seven", " eight", " nine", " ten", " eleven", " twelve", " thirteen", " fourteen", " fifteen", " sixteen", " seventeen", " eighteen", " nineteen"};
+
+    private String convertLessThanOneThousand(int number) {
+        String soFar;
+
+        if (number % 100 < 20) {
+            soFar = numNames[number % 100];
+            number /= 100;
+        } else {
+            soFar = numNames[number % 10];
+            number /= 10;
+
+            soFar = tensNames[number % 10] + soFar;
+            number /= 10;
+        }
+        if (number == 0) {
+            return soFar;
+        }
+        return numNames[number] + " hundred" + soFar;
+    }
+
+    public String convert(String number) {
+        // 0 to999 999 999 999 999 999
+        if (number .equals("0")) {
+            return "zero";
+        }
+
+
+        // pad with "0"
+        String snumber="000000000000000000";
+        int end=number.length();
+        snumber=snumber.substring(end,snumber.length());
+        snumber=snumber+number;
+
+        //XXXnnnnnnnnnnnnnnn
+        int zillions=Integer.parseInt(snumber.substring(0,3));
+        // nnnXXXnnnnnnnnnnnn
+        int trillions=Integer.parseInt(snumber.substring(3,6));
+        // nnnnnnXXXnnnnnnnnn
+        int billions = Integer.parseInt(snumber.substring(6, 9));
+        // nnnnnnnnnXXXnnnnnn
+        int millions = Integer.parseInt(snumber.substring(9, 12));
+        // nnnnnnnnnnnnXXXnnn
+        int hundredThousands = Integer.parseInt(snumber.substring(12, 15));
+        // nnnnnnnnnnnnnnnXXX
+        int thousands = Integer.parseInt(snumber.substring(15, 18));
+
+        String tradZillions;
+        switch (zillions) {
+            case 0:
+                tradZillions = "";
+                break;
+            case 1:
+                tradZillions = convertLessThanOneThousand(zillions)
+                        + " zillion ";
+                break;
+            default:
+                tradZillions = convertLessThanOneThousand(zillions)
+                        + " zillion ";
+        }
+        String result = tradZillions;
+
+
+        String tradTrillions;
+        switch (trillions) {
+            case 0:
+                tradTrillions = "";
+                break;
+            case 1:
+                tradTrillions = convertLessThanOneThousand(trillions)
+                        + " trillion ";
+                break;
+            default:
+                tradTrillions = convertLessThanOneThousand(trillions)
+                        + " trillion ";
+        }
+        result =result+ tradTrillions;
+
+
+        String tradBillions;
+        switch (billions) {
+            case 0:
+                tradBillions = "";
+                break;
+            case 1:
+                tradBillions = convertLessThanOneThousand(billions)
+                        + " billion ";
+                break;
+            default:
+                tradBillions = convertLessThanOneThousand(billions)
+                        + " billion ";
+        }
+        result =result+ tradBillions;
+
+        String tradMillions;
+        switch (millions) {
+            case 0:
+                tradMillions = "";
+                break;
+            case 1:
+                tradMillions = convertLessThanOneThousand(millions)
+                        + " million ";
+                break;
+            default:
+                tradMillions = convertLessThanOneThousand(millions)
+                        + " million ";
+        }
+        result = result + tradMillions;
+
+        String tradHundredThousands;
+        switch (hundredThousands) {
+            case 0:
+                tradHundredThousands = "";
+                break;
+            case 1:
+                tradHundredThousands = "one thousand ";
+                break;
+            default:
+                tradHundredThousands = convertLessThanOneThousand(hundredThousands)
+                        + " thousand ";
+        }
+        result = result + tradHundredThousands;
+
+        String tradThousand;
+        tradThousand = convertLessThanOneThousand(thousands);
+        result = result + tradThousand;
+
+        // remove extra spaces!
+        return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+    }
+
+    /**
+     * Creates new form englishtonumber
+     */
+    public englishtonumber() {
+        initComponents();
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jTextField1 = new javax.swing.JTextField();
+        Submit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        openMenuItem = new javax.swing.JMenuItem();
+        saveMenuItem = new javax.swing.JMenuItem();
+        saveAsMenuItem = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+        cutMenuItem = new javax.swing.JMenuItem();
+        copyMenuItem = new javax.swing.JMenuItem();
+        pasteMenuItem = new javax.swing.JMenuItem();
+        deleteMenuItem = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        contentsMenuItem = new javax.swing.JMenuItem();
+        aboutMenuItem = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        Submit.setText("Submit");
+        Submit.setActionCommand("Submit");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Number to English Conversion Tool");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jButton1.setText("Clear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Enter Number");
+
+        fileMenu.setMnemonic('f');
+        fileMenu.setText("File");
+
+        openMenuItem.setMnemonic('o');
+        openMenuItem.setText("Open");
+        fileMenu.add(openMenuItem);
+
+        saveMenuItem.setMnemonic('s');
+        saveMenuItem.setText("Save");
+        fileMenu.add(saveMenuItem);
+
+        saveAsMenuItem.setMnemonic('a');
+        saveAsMenuItem.setText("Save As ...");
+        saveAsMenuItem.setDisplayedMnemonicIndex(5);
+        fileMenu.add(saveAsMenuItem);
+
+        exitMenuItem.setMnemonic('x');
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exitMenuItem);
+
+        menuBar.add(fileMenu);
+
+        editMenu.setMnemonic('e');
+        editMenu.setText("Edit");
+
+        cutMenuItem.setMnemonic('t');
+        cutMenuItem.setText("Cut");
+        editMenu.add(cutMenuItem);
+
+        copyMenuItem.setMnemonic('y');
+        copyMenuItem.setText("Copy");
+        editMenu.add(copyMenuItem);
+
+        pasteMenuItem.setMnemonic('p');
+        pasteMenuItem.setText("Paste");
+        editMenu.add(pasteMenuItem);
+
+        deleteMenuItem.setMnemonic('d');
+        deleteMenuItem.setText("Delete");
+        editMenu.add(deleteMenuItem);
+
+        menuBar.add(editMenu);
+
+        helpMenu.setMnemonic('h');
+        helpMenu.setText("Help");
+
+        contentsMenuItem.setMnemonic('c');
+        contentsMenuItem.setText("Contents");
+        helpMenu.add(contentsMenuItem);
+
+        aboutMenuItem.setMnemonic('a');
+        aboutMenuItem.setText("About");
+        helpMenu.add(aboutMenuItem);
+
+        menuBar.add(helpMenu);
+
+        setJMenuBar(menuBar);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(Submit)
+                        .addGap(49, 49, 49)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(45, 45, 45)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1)))
+                .addContainerGap(534, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Submit)
+                    .addComponent(jButton1))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(257, Short.MAX_VALUE))
+        );
+
+        Submit.getAccessibleContext().setAccessibleName("Submit");
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+ 
+        
+        EnglishNumberToWords englishNumberToWords=new EnglishNumberToWords();
+       String output= englishNumberToWords.convert(jTextField1.getText());
+       jTextArea1.setText(output);
+        
+//System.out.println("*** " + englishNumberToWords.convert("786"));            // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SubmitActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTextField1.setText("");
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(englishtonumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(englishtonumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(englishtonumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(englishtonumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new englishtonumber().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Submit;
+    private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem contentsMenuItem;
+    private javax.swing.JMenuItem copyMenuItem;
+    private javax.swing.JMenuItem cutMenuItem;
+    private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JMenuItem saveAsMenuItem;
+    private javax.swing.JMenuItem saveMenuItem;
+    // End of variables declaration//GEN-END:variables
+
+}
